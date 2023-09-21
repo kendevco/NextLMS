@@ -1,6 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html,
+body,
+:root {
+  height: 100%;
+}
  
 @layer base {
   :root {
@@ -74,3 +80,9 @@
     @apply bg-background text-foreground;
   }
 }
+
+.ql-container {
+  font-size: 16px !important;
+}
+
+@import "~@uploadthing/react/styles.css"
