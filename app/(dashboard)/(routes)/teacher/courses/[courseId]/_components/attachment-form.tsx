@@ -56,7 +56,7 @@ export const AttachmentForm = ({
   };
 
   return (
-    <div className="mt-6 border bg-slate-100 rounded-md p-4 dark:bg-gray-800">
+    <div className="mt-6 border bg-slate-100 rounded-md p-4 dark:bg-gray-800 dark:text-slate-300">
       <div className="font-medium flex items-center justify-between">
         Course attachments
         <Button onClick={toggleEdit} variant="ghost">
@@ -73,12 +73,12 @@ export const AttachmentForm = ({
       </div>
       {!isEditing && (
         <>
-          {initialData.attachments.length === 0 && (
+          {initialData.attachments && initialData.attachments.length === 0 && (
             <p className="text-sm mt-2 text-slate-500 italic">
               No attachments yet
             </p>
           )}
-          {initialData.attachments.length > 0 && (
+          {initialData.attachments && initialData.attachments.length > 0 && (
             <div className="space-y-2">
               {initialData.attachments.map((attachment) => (
                 <div
