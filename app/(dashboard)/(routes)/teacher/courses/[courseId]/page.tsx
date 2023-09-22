@@ -1,15 +1,19 @@
-import { IconBadge } from "@/components/icon-badge";
-import { db } from "@/lib/db";
 import { auth } from "@clerk/nextjs";
-import { CircleDollarSign, File, LayoutDashboard, ListChecks } from "lucide-react";
 import { redirect } from "next/navigation";
+import { CircleDollarSign, File, LayoutDashboard, ListChecks } from "lucide-react";
+
+import { db } from "@/lib/db";
+import { IconBadge } from "@/components/icon-badge";
+import { Banner } from "@/components/banner";
+
 import { TitleForm } from "./_components/title-form";
 import { DescriptionForm } from "./_components/description-form";
 import { ImageForm } from "./_components/image-form";
 import { CategoryForm } from "./_components/category-form";
-import  PriceForm  from "./_components/price-form";
+import { PriceForm } from "./_components/price-form";
 import { AttachmentForm } from "./_components/attachment-form";
-
+import { ChaptersForm } from "./_components/chapters-form";
+import { Actions } from "./_components/actions";
 
 const CourseIdPage = async ({
   params
@@ -51,29 +55,28 @@ const CourseIdPage = async ({
     return redirect("/");
   }
 
-    const requiredFields = [
-        course.title,
-        course.description,
-        course.imageUrl,
-        course.price,
-        course.categoryId
-    ]
+  const requiredFields = [
+    course.title,
+    course.description,
+    course.imageUrl,
+    course.price,
+    course.categoryId,
+    course.chapters.some(chapter => chapter.isPublished),
+  ];
 
-    const totalFields = requiredFields.length;
-    const completedFields = requiredFields.filter(Boolean).length;
+  const totalFields = requiredFields.length;
+  const completedFields = requiredFields.filter(Boolean).length;
 
-    const completionText = `(${completedFields} / ${totalFields})`;
+  const completionText = `(${completedFields} / ${totalFields})`;
 
   const isComplete = requiredFields.every(Boolean);
 
   return (
     <>
       {!course.isPublished && (
-        // <Banner
-        //   label="This course is unpublished. It will not be visible to the students."
-        // />
-        <div>Course is not published. It will not be visible to the students.</div>
-
+        <Banner
+          label="This course is unpublished. It will not be visible to the students."
+        />
       )}
       <div className="p-6">
         <div className="flex items-center justify-between">
@@ -129,11 +132,10 @@ const CourseIdPage = async ({
                   Course chapters
                 </h2>
               </div>
-              Todo: Chapters Form
-          {/* <ChaptersForm
+              <ChaptersForm
                 initialData={course}
                 courseId={course.id}
-              /> */}
+              />
             </div>
             <div>
               <div className="flex items-center gap-x-2">
@@ -163,7 +165,7 @@ const CourseIdPage = async ({
         </div>
       </div>
     </>
-   );
+  );
 }
- 
+
 export default CourseIdPage;
