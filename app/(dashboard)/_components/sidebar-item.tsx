@@ -35,7 +35,7 @@ const SidebarItem = ({
             type="button"
             className={cn(
                 "flex items-center gap-x-2 text-slate-500 text-sm font-[500] pl-6 transition-all hover:text-slate-600 hover:bg-slate-300/20",
-                isActive && `dark:text-sky-400 dark:bg-sky-200/20 dark:hover:bg-sky-200/20 dark:hover:text-sky-700 text-gray-900 bg-gray-200/20 hover:bg-gray-200/20 hover:text-gray-900`
+                isActive && `dark:text-slate-200 dark:bg-sky-200/20 dark:hover:bg-sky-200/20 dark:hover:text-sky-700 text-gray-900 bg-gray-200/20 hover:bg-gray-200/20 hover:text-gray-900`
             )}
         >
             <div className="flex items-center gap-x-2 py-4">

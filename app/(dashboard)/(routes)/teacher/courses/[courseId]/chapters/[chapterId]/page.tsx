@@ -4,9 +4,11 @@ import { redirect } from "next/navigation";
 
 import { db } from "@/lib/db";
 import  Link  from "next/link";
-import { ArrowLeft, LayoutDashboard } from "lucide-react";
+import { ArrowLeft, Eye, LayoutDashboard } from "lucide-react";
 import { IconBadge } from "@/components/icon-badge";
 import { ChapterTitleForm } from "./_components/chatper-title-form";
+import { ChapterDescriptionForm } from "./_components/chapter-description-form";
+import { ChapterAccessForm } from "./_components/chapter-access-form";
 
 
 interface ChapterIdPageProps {
@@ -89,8 +91,27 @@ const ChapterIdPage: React.FC<ChapterIdPageProps> = async ({ params }) => {
                          courseId={params.courseId} 
                          chapterId={params.chapterId}
                          />
+                         <ChapterDescriptionForm 
+                            initialData={chapter}
+                            courseId={params.courseId}
+                            chapterId={params.chapterId}
+                         />
                     </div>
+                    <div className="flex items-center gap-x-2">
+                        <IconBadge icon={Eye} />
+                        <h2 className="text-xl font-medium">
+                            Access Settings
+                        </h2>
+                    </div>
+                    <ChapterAccessForm 
+                        initialData={chapter}
+                        courseId={params.courseId}
+                        chapterId={params.chapterId}
+                    />
                 </div>
+            </div>
+            <div className="flex items-center gap-x-2">
+                <></>
             </div>
         </div>
   )
