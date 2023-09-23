@@ -160,3 +160,42 @@ export async function PATCH(
     return new NextResponse("Internal Error", { status: 500 });
   }
 }
+
+export async function PATCH_UNPUBLISH(
+  req: Request,
+  { params }: { params: { courseId: string; chapterId: string } }
+) {
+  try {
+    const { userId } = auth();
+
+    if (!userId) {
+      return new NextResponse("Unauthorized", { status: 401 });
+    }
+
+    const ownCourse = await db.course.findUnique({
+      where: {
+        id: params.courseId,
+        userId,
+      },
+    });
+
+    if (!ownCourse) {
+      return new NextResponse("Unauthorized", { status: 401 });
+    }
+
+    const chapter = await db.chapter.update({
+      where: {
+        id: params.chapterId,
+        courseId: params.courseId,
+      },
+      data: {
+        isPublished: false,
+      },
+    });
+
+    return NextResponse.json(chapter);
+  } catch (error) {
+    console.log("[COURSES_CHAPTER_ID_UNPUBLISH]", error);
+    return new NextResponse("Internal Error", { status: 500 });
+  }
+}
