@@ -1,0 +1,47 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Next.js: Server",
+        "type": "node",
+        "request": "launch",
+        "args": ["${workspaceFolder}/node_modules/next/dist/bin/next", "dev"],
+        "runtimeArgs": ["--inspect"],
+        "env": {
+          "NODE_OPTIONS": "--inspect"
+        },
+        "console": "integratedTerminal",
+        "internalConsoleOptions": "neverOpen"
+      },
+      {
+        "name": "Launch Browser against localhost",
+        "type": "chrome",
+        "request": "launch",
+        "url": "http://localhost:3000",
+        "webRoot": "${workspaceFolder}",
+        "sourceMapPathOverrides": {
+          "webpack:///*": "${webRoot}/*",
+          "/*": "${webRoot}/*"
+        }
+      },
+      {
+        "name": "Python: Current File",
+        "type": "python",
+        "request": "launch",
+        "program": "${file}",
+        "console": "integratedTerminal"
+      },
+      {
+        "type": "node",
+        "request": "launch",
+        "name": "Debug Current Test File",
+        "autoAttachChildProcesses": true,
+        "skipFiles": ["<node_internals>/**", "**/node_modules/**"],
+        "program": "${workspaceRoot}/node_modules/vitest/vitest.mjs",
+        "args": ["run", "${relativeFile}"],
+        "smartStep": true,
+        "console": "integratedTerminal"
+      }
+    ]
+  }
+  
