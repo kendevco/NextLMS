@@ -55,3 +55,17 @@ UploadThing https://uploadthing.com/ for serverless upload storage.
 
 If you need further instruction on configuring these services, they are all covered in the course
 video https://www.youtube.com/watch?v=Big_aFLmekI. 
+
+To reset the database, run 
+
+    npx prisma migrate reset
+    npx prisma db push
+
+Note that when I ran npx prisma migrate reset against mongodb.com I ran
+into errors in the terminal stating I lacked permission. However, after
+running the command I did reinitialize the database. 
+
+Note also if reinitializing the datbase you also need to run:
+node scripts/seed.ts
+
+See https://youtu.be/Big_aFLmekI?t=30748 for step-by-step
