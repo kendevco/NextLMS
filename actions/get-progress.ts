@@ -3,7 +3,7 @@ import { db } from "@/lib/db";
 export const getProgress = async (
   userId: string,
   courseId: string
-): Promise<number | undefined> => {
+): Promise<number | null> => {
   try {
     const publishedChapters = await db.chapter.findMany({
       where: {
@@ -35,6 +35,6 @@ export const getProgress = async (
 
     return progressPercentage;
   } catch (error) {
-    return undefined;
+    return null; // make progress possibly null
   }
 };

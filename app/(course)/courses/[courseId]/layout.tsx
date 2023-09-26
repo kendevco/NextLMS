@@ -6,7 +6,7 @@ import { getProgress } from "@/actions/get-progress";
 
 import { CourseSidebar } from "./_components/course-sidebar";
 import { CourseNavbar } from "./_components/course-navbar";
-import ThemeContextProvider from "@/components/providers/theme-provider";
+
 
 const CourseLayout = async ({
   children,
@@ -48,10 +48,11 @@ const CourseLayout = async ({
     return redirect("/");
   }
 
-  const progressCount = await getProgress(userId, course.id);
+  // @ts-ignore
+  const progressCount: number = await getProgress(userId, course.id);
 
   return (
-    <ThemeContextProvider>
+ 
       <div className="h-full">
         <div className="h-[80px] md:pl-80 fixed inset-y-0 w-full z-50">
           <CourseNavbar
@@ -69,7 +70,7 @@ const CourseLayout = async ({
           {children}
         </main>
       </div>
-    </ThemeContextProvider>
+
   )
 }
 

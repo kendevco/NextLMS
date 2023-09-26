@@ -1,7 +1,7 @@
 import { LucideIcon } from 'lucide-react';
 import { cva, type VariantProps } from "class-variance-authority";
 
-import { cn } from '@/lib/utils';
+import { cn } from "@/lib/utils";
 
 
 // Trying to replicate Shadcn's Component Styling System
