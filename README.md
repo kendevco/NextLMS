@@ -53,6 +53,8 @@ Schema! And Copilot did all the heavy lifting.
 
 UploadThing https://uploadthing.com/ for serverless upload storage.
 
+Stripe Payments: https://stripe.com
+
 If you need further instruction on configuring these services, they are all covered in the course
 video https://www.youtube.com/watch?v=Big_aFLmekI. 
 
