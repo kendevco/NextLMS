@@ -9,11 +9,16 @@ export const initialProfile = async () => {
         return redirectToSignIn();
     }   
 
-    let profile = await db.profile.findUnique({
+    let userWithRole = await db.user.findUnique({
         where: {
-            userId: user.id,
+            id: user.id
         },
+        include: {
+            profile: true
+        }
     });
+
+    let profile = userWithRole.profile;
 
     let firstName = user.firstName || "";
     let lastName = user.lastName || "";
