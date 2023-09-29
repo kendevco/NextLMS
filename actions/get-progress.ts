@@ -35,6 +35,7 @@ export const getProgress = async (
 
     return progressPercentage;
   } catch (error) {
-    return null; // make progress possibly null
+    console.log("[GET_PROGRESS]", error);
+    return 0;
   }
 };

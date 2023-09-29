@@ -8,6 +8,24 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum MemberRole {
+  ADMIN
+  TEACHER
+  GUEST
+}
+
+model Profile {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  userId String @unique
+  name String
+  imageUrl String?  
+  email String  
+
+  role MemberRole @default(GUEST)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
 model Course {
   id          String     @id @default(auto()) @map("_id") @db.ObjectId
   userId      String

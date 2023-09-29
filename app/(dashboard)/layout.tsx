@@ -1,10 +1,20 @@
 import { SidebarIcon } from "lucide-react";
 import { Sidebar } from "./_components/Sidebar";
 import { Navbar } from "./_components/navbar";
+import { isTeacher } from "@/lib/teacher";
 
-const DashboardLayout = ({
+
+
+const getIsTeacher = async () => {
+    return await isTeacher();
+  };
+
+const DashboardLayout = async ({
     children,
 }: { children: React.ReactNode }) => {
+
+    const isTeacherValue = await getIsTeacher();
+
     return (
         <div className="h-full dark:bg-gray-900">
             <div className="h-[80px] md:pl-56 fixed inset-y-0 w-full z-50 dark:bg-gray-900">
@@ -13,7 +23,6 @@ const DashboardLayout = ({
 
             <div className="hidden md:flex h-full w-56 flex-col fixed inset-y-0 z-50 dark:bg-gray-900">
                 <Sidebar />
-
             </div>
             {/* pt or pull top pushes the content down accounting for the height of the navbar  
             1:26:33 / 10:41:03 - https://youtu.be/Big_aFLmekI?si=P2rTnadq2IYS_90F */}
