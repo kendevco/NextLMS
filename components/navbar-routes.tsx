@@ -24,7 +24,7 @@ export const NavbarRoutes : React.FC<NavbarRoutesProps> = ({
   const isTeacher = currentProfile?.role === "ADMIN" || currentProfile?.role === "TEACHER";
 
   // log the currentprofile
-  //console.log("Navbar Routes: currentProfile: ", currentProfile);
+  console.log("Navbar Routes: currentProfile: ", currentProfile);
 
   return (
     <>
