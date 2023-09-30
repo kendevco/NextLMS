@@ -11,7 +11,7 @@ datasource db {
 enum MemberRole {
   ADMIN
   TEACHER
-  GUEST
+  STUDENT
 }
 
 model Profile {
@@ -21,7 +21,7 @@ model Profile {
   imageUrl String?  
   email String  
 
-  role MemberRole @default(GUEST)
+  role MemberRole @default(STUDENT)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

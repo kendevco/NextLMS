@@ -2,13 +2,26 @@
 
 import { NavbarRoutes } from "@/components/navbar-routes"
 import { MobileSidebar } from "./mobile-sidebar"
+import { SafeProfile } from "@/types";
 
-export const Navbar = () => {
+
+interface NavbarProps  {
+    currentProfile?: SafeProfile | null
+}
+
+
+export const Navbar : React.FC<NavbarProps> = ({
+    currentProfile
+  }) => {
+
+        // log the currentprofile with "Dashboard Layout: currentProfile:"
+    console.log("Navbar: currentProfile: ", currentProfile);
+
 
     return (
         <div className="p-4 border-b h-full flex items-center bg-white dark:bg-gray-900 text-gray-900 dark:text-white shadow-sm">
              <MobileSidebar />
-             <NavbarRoutes />
+             <NavbarRoutes currentProfile={currentProfile}/>
         </div>
     )
 }

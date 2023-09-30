@@ -6,15 +6,25 @@ import { Button } from "@/components/ui/button";
 import { LogOut } from "lucide-react";
 import Link from "next/link";
 import { SearchInput } from "./search-input";
+import { SafeProfile } from "@/types";
 
-export const NavbarRoutes = () => {
+interface NavbarRoutesProps  {
+  currentProfile?: SafeProfile | null
+}
+
+export const NavbarRoutes : React.FC<NavbarRoutesProps> = ({
+  currentProfile
+}) => {
   const pathname = usePathname();
   const router = useRouter();
 
   const isTeacherPage = pathname?.startsWith("/teacher");
   const isPlayerPage = pathname?.startsWith("/chapter");
   const isSearchPage = pathname === "/search";
-  const isTeacher = true; // profile?.role === "ADMIN";
+  const isTeacher = currentProfile?.role === "ADMIN" || currentProfile?.role === "TEACHER";
+
+  // log the currentprofile
+  console.log("Navbar Routes: currentProfile: ", currentProfile);
 
   return (
     <>

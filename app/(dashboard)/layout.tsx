@@ -2,6 +2,8 @@ import { SidebarIcon } from "lucide-react";
 import { Sidebar } from "./_components/Sidebar";
 import { Navbar } from "./_components/navbar";
 import { isTeacher } from "@/lib/teacher";
+import { currentProfile } from "@/lib/current-profile";
+import getCurrentProfile from "@/actions/get-CurrentUser";
 
 
 
@@ -14,11 +16,15 @@ const DashboardLayout = async ({
 }: { children: React.ReactNode }) => {
 
     const isTeacherValue = await getIsTeacher();
+    const currentProfile = await getCurrentProfile();
+
+    // log the currentprofile with "Dashboard Layout: currentProfile:"
+    console.log("Dashboard Layout: currentProfile: ", currentProfile);
 
     return (
         <div className="h-full dark:bg-gray-900">
             <div className="h-[80px] md:pl-56 fixed inset-y-0 w-full z-50 dark:bg-gray-900">
-                <Navbar />
+                <Navbar currentProfile={currentProfile}/>
             </div>
 
             <div className="hidden md:flex h-full w-56 flex-col fixed inset-y-0 z-50 dark:bg-gray-900">

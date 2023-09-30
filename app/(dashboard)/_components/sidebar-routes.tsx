@@ -4,7 +4,7 @@ import { Layout, Compass, List, BarChart, Users } from "lucide-react";
 import SidebarItem from "./sidebar-item";
 import { usePathname } from "next/navigation";
 
-const guestRoutes = [
+const STUDENTRoutes = [
     {
         icon: Layout,
         label: "Dashboard",
@@ -42,7 +42,7 @@ export const SidebarRoutes = () => {
     
     const isTeacherPage = pathname?.startsWith("/teacher");
 
-    const routes = isTeacherPage ? teacherRoutes : guestRoutes;
+    const routes = isTeacherPage ? teacherRoutes : STUDENTRoutes;
 
     return (
         <div className="flex flex-col w-full">
