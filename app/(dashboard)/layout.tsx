@@ -19,7 +19,7 @@ const DashboardLayout = async ({
     const currentProfile = await getCurrentProfile();
 
     // log the currentprofile with "Dashboard Layout: currentProfile:"
-    console.log("Dashboard Layout: currentProfile: ", currentProfile);
+    //console.log("Dashboard Layout: currentProfile: ", currentProfile);
 
     return (
         <div className="h-full dark:bg-gray-900">

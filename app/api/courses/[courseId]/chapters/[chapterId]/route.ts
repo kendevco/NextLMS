@@ -131,7 +131,11 @@ export async function PATCH(
       });
 
       if (existingMuxData) {
-        await Video.Assets.del(existingMuxData.assetId);
+        try {
+          await Video.Assets.del(existingMuxData.assetId);
+        } catch (error) {
+          console.log("[Mux Asset Delete]", error);
+        }
         await db.muxData.delete({
           where: {
             id: existingMuxData.id,
@@ -139,19 +143,28 @@ export async function PATCH(
         });
       }
 
-      const asset = await Video.Assets.create({
-        input: values.videoUrl,
-        playback_policy: "public",
-        test: false,
-      });
+      try {
 
-      await db.muxData.create({
-        data: {
-          chapterId: params.chapterId,
-          assetId: asset.id,
-          playbackId: asset.playback_ids?.[0]?.id,
+        const asset = await Video.Assets.create({
+          input: values.videoUrl,
+          playback_policy: "public",
+          test: false,
+        });
+
+        if (asset) {
+          await db.muxData.create({
+            data: {
+              chapterId: params.chapterId,
+              assetId: asset.id,
+              playbackId: asset.playback_ids?.[0]?.id,
+            }
+          });
         }
-      });
+
+      } catch (error) {
+        console.log("[Mux Asset Create]", error);
+      }
+
     }
 
     return NextResponse.json(chapter);

@@ -14,10 +14,6 @@ export const Navbar : React.FC<NavbarProps> = ({
     currentProfile
   }) => {
 
-        // log the currentprofile with "Dashboard Layout: currentProfile:"
-    console.log("Navbar: currentProfile: ", currentProfile);
-
-
     return (
         <div className="p-4 border-b h-full flex items-center bg-white dark:bg-gray-900 text-gray-900 dark:text-white shadow-sm">
              <MobileSidebar />
