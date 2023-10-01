@@ -28,7 +28,7 @@ export async function POST(req: Request) {
   const userId = session?.metadata?.userId;
   const courseId = session?.metadata?.courseId;
 
-  if (event.type === "checkout.session.completed") {
+  if (event.type === "checkout.session.completed" || event.type === "checkout.session.async_payment_succeeded") {
     if (!userId || !courseId) {
       return new NextResponse(`Webhook Error: Missing metadata`, { status: 400 });
     }
