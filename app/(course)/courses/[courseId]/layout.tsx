@@ -7,8 +7,7 @@ import { getProgress } from "@/actions/get-progress";
 
 import { CourseSidebar } from "./_components/course-sidebar";
 import { CourseNavbar } from "./_components/course-navbar";
-import getCurrentProfile from "@/actions/get-current-profile";
-
+import getSafeProfile from "@/actions/get-safe-profile";
 
 const CourseLayout = async ({
   children,
@@ -18,13 +17,13 @@ const CourseLayout = async ({
   params: { courseId: string };
 }) => {
   const { userId } = auth();
-
   if (!userId) {
     return redirect("/")
   }
-  const currentProfile = await getCurrentProfile();
-  // Log to console currentProfile with component name to identify
-  console.log("CourseLayout currentProfile", currentProfile)
+  const safeProfile = await getSafeProfile();
+  if (!safeProfile) {
+    return redirect("/");
+  }
 
   const course = await db.course.findUnique({
     where: {
@@ -63,7 +62,7 @@ const CourseLayout = async ({
         <CourseNavbar
           course={course}
           progressCount={progressCount}
-          currentProfile={currentProfile}
+          currentProfile={safeProfile}
         />
       </div>
       <div className="hidden md:flex h-full w-80 flex-col fixed inset-y-0 z-50">

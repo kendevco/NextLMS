@@ -22,10 +22,6 @@ export const CourseNavbar = ({
   currentProfile
 }: CourseNavbarProps) => {
 
-    // Log to console currentProfile with component name to identify
-    console.log("CourseNavbar currentProfile", currentProfile)
-
-
   return (
 
       <div className="p-4 border-b h-full flex items-center  shadow-sm">

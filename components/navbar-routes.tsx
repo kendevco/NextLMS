@@ -16,15 +16,10 @@ export const NavbarRoutes : React.FC<NavbarRoutesProps> = ({
   currentProfile
 }) => {
   const pathname = usePathname();
-  const router = useRouter();
-
   const isTeacherPage = pathname?.startsWith("/teacher");
   const isPlayerPage = pathname?.startsWith("/chapter");
   const isSearchPage = pathname === "/search";
   const isTeacher = currentProfile?.role === "ADMIN" || currentProfile?.role === "TEACHER";
-
-  // log the currentprofile
-  console.log("Navbar Routes: currentProfile: ", currentProfile);
 
   return (
     <>

@@ -19,15 +19,9 @@ const ProfileIdPage: React.FC<ProfileIdPageProps> = async ({ params }) => {
   const { id } = params;
   const { userId: currentUserId } = auth();
 
-  // log currentuserid with a description so I can find it in the code
-
- // console.log(currentUserId, "current user id");
   if (!currentUserId) {
     return redirect("/teacher/users/");
   }
-
-  // log params.id with a description so I can find it in the code
- // console.log(params.id, "params user id");
 
   const profile = await db.profile.findUnique({
     where: {
@@ -40,12 +34,9 @@ const ProfileIdPage: React.FC<ProfileIdPageProps> = async ({ params }) => {
   }
 
   const requiredFields = [profile.imageUrl, profile.role];
-
   const totalFields = requiredFields.length;
   const completedFields = requiredFields.filter(Boolean).length;
-
   const completionText = `(${completedFields}/${totalFields})`;
-
   const isComplete = requiredFields.every(Boolean);
 
   return (
