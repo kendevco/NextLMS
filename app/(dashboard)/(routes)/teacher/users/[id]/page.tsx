@@ -45,11 +45,11 @@ const ProfileIdPage: React.FC<ProfileIdPageProps> = async ({ params }) => {
         <div className="flex items-center justify-between">
           <div className="w-full">
             <Link
-              href={`/teacher/users/${params.id}`}
+              href={`/teacher/users/`}
               className="flex items-center text-sm hover:opacity-75 transition mb-6"
             >
               <ArrowLeft className="h-4 w-4 mr-2" />
-              Back to user profile
+              Back to user list
             </Link>
             <div className="flex items-center justify-between w-full">
               <div className="flex flex-col gap-y-2">

@@ -17,7 +17,7 @@ export const NavbarRoutes : React.FC<NavbarRoutesProps> = ({
 }) => {
   const pathname = usePathname();
   const isTeacherPage = pathname?.startsWith("/teacher");
-  const isPlayerPage = pathname?.startsWith("/chapter");
+  const isPlayerPage = pathname?.includes("/chapters");
   const isSearchPage = pathname === "/search";
   const isTeacher = currentProfile?.role === "ADMIN" || currentProfile?.role === "TEACHER";
 
@@ -45,7 +45,7 @@ export const NavbarRoutes : React.FC<NavbarRoutesProps> = ({
           </Link>
         ) : null}
 
-        <UserButton afterSignOutUrl="/" />
+       <UserButton afterSignOutUrl="/" />
       </div>
     </>
   );
