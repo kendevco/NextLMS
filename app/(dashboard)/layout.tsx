@@ -1,25 +1,16 @@
 import { SidebarIcon } from "lucide-react";
 import { Sidebar } from "./_components/Sidebar";
 import { Navbar } from "./_components/navbar";
-import { isTeacher } from "@/lib/teacher";
-import { currentProfile } from "@/lib/current-profile";
-import getCurrentProfile from "@/actions/get-CurrentUser";
-
-
-
-const getIsTeacher = async () => {
-    return await isTeacher();
-  };
+import getCurrentProfile from "@/actions/get-current-profile";
 
 const DashboardLayout = async ({
     children,
 }: { children: React.ReactNode }) => {
 
-    const isTeacherValue = await getIsTeacher();
     const currentProfile = await getCurrentProfile();
 
     // log the currentprofile with "Dashboard Layout: currentProfile:"
-    //console.log("Dashboard Layout: currentProfile: ", currentProfile);
+    console.log("DashboardLayout: currentProfile: ", currentProfile);
 
     return (
         <div className="h-full dark:bg-gray-900">

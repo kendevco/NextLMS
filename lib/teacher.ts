@@ -7,8 +7,8 @@ export const isTeacher = async () => {
     //console.log("C:\\Data\\Dev\\Fullstack\\NextLMS\\lib\\teacher.ts isTeacher", profile);
 
     if (profile) {
-        return profile.role === "ADMIN";
-        console.log("IsTeacher: ", profile.role === "ADMIN")
-    }
+        console.log("teacher.ts_IsTeacher: ", profile.role === "ADMIN" || profile.role === "TEACHER")
+        return profile.role === "ADMIN" || profile.role === "TEACHER";
+     }
     return false;
 }

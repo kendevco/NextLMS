@@ -5,11 +5,15 @@ export default async function getCurrentProfile() {
 
     const user = await currentUser();
 
+    console.log("getCurrentProfile user", user);
+
     const currentProfile = await prisma?.profile.findUnique({
       where: {
         userId: user?.id,
       }
     });
+
+    console.log("getCurrentProfile currentProfile", currentProfile);
 
     if (!currentProfile) {
       return null;

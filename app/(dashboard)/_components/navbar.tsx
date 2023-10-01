@@ -15,7 +15,7 @@ export const Navbar : React.FC<NavbarProps> = ({
   }) => {
 
     // Log to console currentProfile with component name to identify
-    console.log("Navbar", currentProfile)
+    console.log("Navbar render", currentProfile)
 
     return (
         <div className="p-4 border-b h-full flex items-center bg-white dark:bg-gray-900 text-gray-900 dark:text-white shadow-sm">
