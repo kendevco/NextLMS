@@ -8,7 +8,7 @@ export async function POST(
 ) {
   try {
     const { userId } = auth();
-    const { url } = await req.json();
+    const { url, originalFilename } = await req.json();
 
     console.log("COURSE_ID_ATTACHMENTS", url, params.courseId);
 
@@ -27,8 +27,10 @@ export async function POST(
       return new NextResponse("Unauthorized", { status: 401 });
     }
 
-    const name = url ? url.split("/").pop() : "Untitled";
-    
+    var name = url ? url.split("/").pop() : "Untitled";
+    if (originalFilename) {
+      name = originalFilename
+    }
     const attachment = await db.attachment.create({
       data: {
         url,
