@@ -1,6 +1,25 @@
 ## LMS Platform
 
-This repository contains a faithful copy and enhancement of the LMS platform created by CodeWithAntonio in the tutorial Learn Next & React and get Hired!: https://www.youtube.com/watch?v=Big_aFLmekI.
+# LMS Platform
+
+This repository contains a faithful copy and enhancement of the LMS platform created by CodeWithAntonio in the tutorial [Learn Next & React and get Hired!](https://www.youtube.com/watch?v=Big_aFLmekI).
+
+## Live Demo
+
+A working version of this app is available at [https://lms.kendevco.co](https://lms.kendevco.co).
+
+## Development Status
+
+- Versions and dependencies have been updated.
+- Comments have been added and code has been tidied up.
+- Occasional reports of black screen or other issues at runtime have been received, possibly related to Clerk integration.
+
+## Call for Collaboration
+
+If you're a budding developer looking for an exciting project:
+
+- Consider contributing to [Payload Nuke](https://github.com/payloadnuke)
+- Help shape its future by contributing to the [draft constitution](https://docs.google.com/document/d/1TaYHs0CSk76xBFu5ps-2BpyWsZkS2getV41_8Q0tO34/edit?usp=sharing)
 
 **Key Features:**
 
