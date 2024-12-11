@@ -54,21 +54,21 @@ export const columns: ColumnDef<Profile, keyof Profile>[] = [
     cell: ({ row }) => {
       const { id } = row.original;
       return (
-        <DropdownMenu>
+        (<DropdownMenu>
           <DropdownMenuTrigger>
             <Button variant="ghost">
               <MoreHorizontal className="h-4 w-4" />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent>
-            <Link href={`/teacher/users/${id}`}>
+            <Link href={`/teacher/users/${id}`} legacyBehavior>
               <DropdownMenuItem>
                 <Pencil className="h-4 w-4 mr-2" />
                 Edit
               </DropdownMenuItem>
             </Link>
           </DropdownMenuContent>
-        </DropdownMenu>
+        </DropdownMenu>)
       );
     },
   },

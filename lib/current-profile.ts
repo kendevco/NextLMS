@@ -1,40 +1,24 @@
-import { redirectToSignIn } from "@clerk/nextjs";
-import { currentUser } from "@clerk/nextjs/server";
 import { auth } from "@clerk/nextjs/server";
 import { db } from "@/lib/db";
 
 export const currentProfile = async () => {
-  const user = await currentUser();
+  try {
+    const session = await auth();
+    const userId = session?.userId;
 
-  if (!user) {
-    return redirectToSignIn();
-  }
-
-  let profile = await db.profile.findUnique({
-    where: {
-      userId: user.id,
-    },
-  });
-
-  if (profile) {
-    return profile;
-  } else {
-    let firstName = user.firstName || "";
-    let lastName = user.lastName || "";
-    // If the first and last name fields are null, trim the email address before the @ character and set it to the first name field.
-    if (!firstName && !lastName) {
-      const emailParts = user.emailAddresses[0].emailAddress.split("@");
-      firstName = emailParts[0].trim();
-      lastName = "";
+    if (!userId) {
+      return null;
     }
-    profile = await db.profile.create({
-      data: {
-        userId: user.id,
-        name: `${firstName} ${lastName}`,
-        imageUrl: user.imageUrl,
-        email: user.emailAddresses[0].emailAddress,
-      },
+
+    const profile = await db.profile.findUnique({
+      where: {
+        userId
+      }
     });
+
+    return profile;
+  } catch (error) {
+    console.error("CURRENT_PROFILE_ERROR", error);
+    return null;
   }
-  return profile;
 };

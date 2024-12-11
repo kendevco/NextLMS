@@ -87,7 +87,7 @@ export const columns: ColumnDef<Course>[] = [
       const { id } = row.original;
 
       return (
-        <DropdownMenu>
+        (<DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" className="h-4 w-8 p-0">
               <span className="sr-only">Open menu</span>
@@ -95,14 +95,14 @@ export const columns: ColumnDef<Course>[] = [
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            <Link href={`/teacher/courses/${id}`}>
+            <Link href={`/teacher/courses/${id}`} legacyBehavior>
               <DropdownMenuItem>
                 <Pencil className="h-4 w-4 mr-2" />
                 Edit
               </DropdownMenuItem>
             </Link>
           </DropdownMenuContent>
-        </DropdownMenu>
+        </DropdownMenu>)
       );
     },
   },

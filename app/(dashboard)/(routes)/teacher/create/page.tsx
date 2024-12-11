@@ -61,7 +61,7 @@ const CreatePage = () => {
         }
       };
     return (
-        <div className="max-w-5xl mx-auto flex md:items-center md:justify-center h-full p-6">
+        (<div className="max-w-5xl mx-auto flex md:items-center md:justify-center h-full p-6">
             <div>
                 <h1  className="text-2xl">
                 Name your new course
@@ -101,7 +101,7 @@ const CreatePage = () => {
                             }
                         />
                         <div className="flex items-center gap-x-2" >
-                            <Link href="/teacher/courses">
+                            <Link href="/teacher/courses" legacyBehavior>
                                 <Button 
                                     variant="ghost"
                                     type="button"
@@ -122,8 +122,8 @@ const CreatePage = () => {
                 </Form>
 
             </div>
-        </div>
-    )
+        </div>)
+    );
 
 
 }
