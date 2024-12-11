@@ -1,4 +1,4 @@
-import { auth } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";;
 import { redirect } from "next/navigation";
 import { File } from "lucide-react";
 
@@ -16,11 +16,11 @@ const ChapterIdPage = async ({
 }: {
   params: { courseId: string; chapterId: string }
 }) => {
-  const { userId } = auth();
-  
+  const { userId } = await auth();
+
   if (!userId) {
     return redirect("/");
-  } 
+  }
 
   const {
     chapter,
@@ -44,7 +44,7 @@ const ChapterIdPage = async ({
   const isLocked = !chapter.isFree && !purchase;
   const completeOnEnd = !!purchase && !userProgress?.isCompleted;
 
-  return ( 
+  return (
     <div>
       {userProgress?.isCompleted && (
         <Banner
@@ -98,11 +98,11 @@ const ChapterIdPage = async ({
               <Separator />
               <div className="p-4">
                 {attachments.map((attachment) => (
-                  <a 
+                  <a
                     href={attachment.url}
                     target="_blank"
                     key={attachment.id}
-                                        className='flex items-center p3 w-full bg-sky-200 dark:bg-sky-800 text-sky-700 dark:text-sky-300 hover:underline'
+                    className='flex items-center p3 w-full bg-sky-200 dark:bg-sky-800 text-sky-700 dark:text-sky-300 hover:underline'
                   >
                     <File />
                     <p className="line-clamp-1">
@@ -116,7 +116,7 @@ const ChapterIdPage = async ({
         </div>
       </div>
     </div>
-   );
+  );
 }
- 
+
 export default ChapterIdPage;

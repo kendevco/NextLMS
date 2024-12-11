@@ -1,12 +1,12 @@
 import { db } from "@/lib/db";
 import { SafeProfile } from "@/types";
-import { auth, currentUser } from "@clerk/nextjs"
+import { auth, currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 
 export default async function getSafeProfile() {
   try {
 
-    const { userId } = auth();
+    const { userId } = await auth();
 
     if (!userId) {
         return redirect("/");

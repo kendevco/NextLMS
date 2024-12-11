@@ -1,5 +1,5 @@
 import { db } from "@/lib/db";
-import { currentUser } from "@clerk/nextjs";
+import { currentUser } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
 import { stripe } from "@/lib/stripe";
@@ -20,7 +20,7 @@ export async function POST(
 
         const user = await currentUser();   
 
-        if (!user || !user.id || !user.emailAddresses?.[0]?.emailAddress) {
+        if (!user || !user.id) {
             return new NextResponse("Unauthorized", { status: 401 });
         }
 

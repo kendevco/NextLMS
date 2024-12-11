@@ -8,6 +8,21 @@ This repository contains a faithful copy and enhancement of the LMS platform cre
 
 A working version of this app is available at [https://lms.kendevco.co](https://lms.kendevco.co).
 
+## Key Dependencies Versions
+
+This project uses the following major dependencies:
+
+- **Next.js**: 13.5.4 (App Router)
+- **React**: 18.2.0
+- **Clerk**: 6.8.0 (Authentication)
+- **Prisma**: 5.22.0 (ORM)
+- **Mux**: 7.3.1 (Video Processing)
+- **React Quill**: 2.0.0 (Rich Text Editor)
+- **Stripe**: 13.7.0 (Payments)
+- **Uploadthing**: 5.7.4 (File Uploads)
+- **Tailwind CSS**: 3.3.3 (Styling)
+- **TypeScript**: 5.2.2
+
 ## Development Status
 
 - Versions and dependencies have been updated.
@@ -77,7 +92,9 @@ Stripe Payments: https://stripe.com
 If you need further instruction on configuring these services, they are all covered in the course
 video https://www.youtube.com/watch?v=Big_aFLmekI. 
 
-To reset the database, run 
+## Database Management
+
+To reset the database, run:
 
     npx prisma migrate reset
     npx prisma db push

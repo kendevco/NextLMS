@@ -1,5 +1,5 @@
 import { db } from "@/lib/db";
-import { auth } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 
 export async function POST(
@@ -7,7 +7,7 @@ export async function POST(
   { params }: { params: { courseId: string } }
 ) {
   try {
-    const { userId } = auth();
+    const { userId } = await auth();
     const { url, originalFilename } = await req.json();
 
     console.log("COURSE_ID_ATTACHMENTS", url, params.courseId);
@@ -29,7 +29,7 @@ export async function POST(
 
     var name = url ? url.split("/").pop() : "Untitled";
     if (originalFilename) {
-      name = originalFilename
+      name = originalFilename;
     }
     const attachment = await db.attachment.create({
       data: {

@@ -1,4 +1,4 @@
-import { auth } from "@clerk/nextjs"
+import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { CheckCircle, Clock, InfoIcon } from "lucide-react";
 
@@ -9,7 +9,7 @@ import { InfoCard } from "./_components/info-card";
 import { BannerCard } from "./_components/banner-card";
 
 export default async function Dashboard() {
-  const { userId } = auth();
+  const { userId } = await auth();
 
   if (!userId) {
     return redirect("/");
@@ -24,9 +24,9 @@ export default async function Dashboard() {
     <div className="p-6 space-y-4">
       <div className="grid grid-cols-1 gap-4">
         <BannerCard
-            icon={InfoIcon}
-            label="Welcome to the dashboard"
-            description={`This is where you can see your progress 
+          icon={InfoIcon}
+          label="Welcome to the dashboard"
+          description={`This is where you can see your progress 
             and continue your courses. This is a demonstration LMS and as such, all courses are free and Stripe is in test
              mode. To enroll in a course, enter dummy data in the Stripe form. Contact me from
              folio.kendev.co to obtain admin access`}

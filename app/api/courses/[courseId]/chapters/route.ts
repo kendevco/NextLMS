@@ -1,4 +1,4 @@
-import { auth } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 
 import { db } from "@/lib/db";
@@ -8,7 +8,7 @@ export async function POST(
   { params }: { params: { courseId: string } }
 ) {
   try {
-    const { userId } = auth();
+    const { userId } = await auth();
     const { title } = await req.json();
 
     if (!userId) {
@@ -19,7 +19,7 @@ export async function POST(
       where: {
         id: params.courseId,
         userId: userId,
-      }
+      },
     });
 
     if (!courseOwner) {
@@ -42,7 +42,7 @@ export async function POST(
         title,
         courseId: params.courseId,
         position: newPosition,
-      }
+      },
     });
 
     return NextResponse.json(chapter);

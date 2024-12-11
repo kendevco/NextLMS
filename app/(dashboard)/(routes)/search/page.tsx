@@ -1,4 +1,4 @@
-import { auth } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";;
 import { redirect } from "next/navigation";
 
 import { db } from "@/lib/db";
@@ -18,7 +18,7 @@ interface SearchPageProps {
 const SearchPage = async ({
   searchParams
 }: SearchPageProps) => {
-  const { userId } = auth();
+  const { userId } = await auth();
 
   if (!userId) {
     return redirect("/");
@@ -47,7 +47,7 @@ const SearchPage = async ({
         <CoursesList items={courses} />
       </div>
     </>
-   );
+  );
 }
- 
+
 export default SearchPage;
